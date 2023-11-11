@@ -11,8 +11,8 @@ A grandes razgos un dataset es un conjunto de datos que se utilizan para entrena
 
 ### Imagenes
 Las imagenes son como las siguientes:
-![Alt text](Images-readme\IMG-20231101-WA0088.jpg)
-![Alt text](Images-readme\image.png)
+![Alt text](Images-readme/IMG-20231101-WA0088.jpg)
+![Alt text](Images-readme/image.png)
 Imagenes de hojas de arandano con oidiosis y sin oidiosis.
 Las imagenes deben estar normalizadas, es decir, deben tener el mismo tamaño y deben estar en el mismo formato. En este caso las imagenes tienen el mismo tamaño y estan en formato jpg.
 
@@ -29,12 +29,12 @@ La primera etiqueta es la clase de la imagen, en este caso 0 es sin oidiosis y 1
 class / x / y / width / height 
 ```
 
-![Alt text](Images-readme\im.png)
+![Alt text](Images-readme/im.png)
 
 ### Etiquetado de imagenes
 Para etiquetar las imagenes se utilizo el etiquetador de Roboflow, el cual es una herramienta que permite etiquetar imagenes de manera rapida y sencilla. El etiquetador de Roboflow es como el siguiente:
 
-![Alt text](Images-readme\image2.png)
+![Alt text](Images-readme/image2.png)
 
 ## Entrenamiento de la red
 Para entrenar el modelo de IA se hizo uso de una tecnica muy popular y bastente buena llamada transfer learning. Transfer learning es una tecnica que consiste en utilizar un modelo de IA ya entrenado y modificarlo para que se adapte a las necesidades del proyecto. En este caso se utilizo el modelo de IA llamado YOLOv7, el cual es un modelo de IA que se utiliza para la deteccion de objetos en imagenes.
@@ -42,7 +42,7 @@ Para entrenar el modelo de IA se hizo uso de una tecnica muy popular y bastente 
 ### YOLOv7
 YOLOv7 es un modelo de IA que se utiliza para la deteccion de objetos en imagenes. YOLOv7 es un modelo de IA que se basa en redes neuronales convolucionales. Las redes neuronales convolucionales son un tipo de red neuronal que se utiliza para la clasificacion de imagenes. La arquitectura de YOLOv7 es la siguiente:
 
-![Alt text](Images-readme\image3.png)
+![Alt text](Images-readme/image3.png)
 
 Pagina de YOLOv7: https://github.com/WongKinYiu/yolov7
 
