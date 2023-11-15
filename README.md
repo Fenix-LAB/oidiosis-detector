@@ -83,3 +83,16 @@ cv2.destroyAllWindows()
 ```
 
 A grandes rasgos el script es un script que abre la camara de la computadora y por cada ciclo del while se obtiene una imagen de la camara, se le aplica el modelo de IA y se muestra el resultado en una ventana.
+
+## Instalacion
+Para instalar el proyecto se debe clonar el repositorio y se debe instalar las dependencias del proyecto. 
+
+```bash
+python pip install -r requirements.txt
+```
+
+Para instalar Pytorch GPU se debe ejecutar el siguiente comando:
+```bash
+pip install torch --index-url https://download.pytorch.org/whl/cu121
+pip install torchvision==0.15.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html
+```
