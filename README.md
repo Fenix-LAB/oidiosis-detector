@@ -73,7 +73,7 @@ while(True):
     ret, frame = cam.read()
     frame = cv2.flip(frame, 1)
     result = model(frame,size=640)
-    cv2.imshow('Palta', np.squeeze(result.render()))
+    cv2.imshow('Mirtilo', np.squeeze(result.render()))
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
