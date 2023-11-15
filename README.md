@@ -59,27 +59,23 @@ Los workers son los nucleos de la computadora que se van a utilizar para entrena
 Para la deteccion de oidiosis en hojas de arandano se utilizo el modelo de IA entrenado en la parte anterior. Para la deteccion de oidiosis en hojas de arandano se utiliza el siguiente script:
 
 ```bash
-import torch
-import cv2
-import numpy as np
+cap = cv2.VideoCapture(0)
 
-model = torch.hub.load()
+while cap.isOpened():
+    
+    start_time = time.perf_counter()
+    ret, frame = cap.read()
+    if not ret:
+        break
+    results = self.score_frame(frame)
+    frame = self.plot_boxes(results, frame)
+    end_time = time.perf_counter()
+    fps = 1 / np.round(end_time - start_time, 3)
+    cv2.putText(frame, f'FPS: {int(fps)}', (20,70), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0,255,0), 2)
+    cv2.imshow("img", frame)
 
-model.conf = 0.4
-
-cam = cv2.VideoCapture(0) 
-
-while(True): 
-    ret, frame = cam.read()
-    frame = cv2.flip(frame, 1)
-    result = model(frame,size=640)
-    cv2.imshow('Mirtilo', np.squeeze(result.render()))
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
-cam.release()
-# close all windows
-cv2.destroyAllWindows()
 ```
 
 A grandes rasgos el script es un script que abre la camara de la computadora y por cada ciclo del while se obtiene una imagen de la camara, se le aplica el modelo de IA y se muestra el resultado en una ventana.

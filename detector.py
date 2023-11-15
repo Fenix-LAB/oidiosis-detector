@@ -100,6 +100,9 @@ class ObjectDetection:
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
+        cap.release()
+        # close all windows
+        cv2.destroyAllWindows()
 
 
 if __name__ == '__main__':
