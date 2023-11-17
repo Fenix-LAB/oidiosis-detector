@@ -1,10 +1,10 @@
-import torch
-import numpy as np
-import cv2
-import time
+import torch # Libreria de aprendizaje profundo
+import numpy as np # Libreria para menejo de arrays
+import cv2 # Libreria para procesamiento de imagenes
+import time # Libreria para medicion de tiempo
 
 
-class ObjectDetection:
+class OidiosisDetection:
     """
     Deteccion de objetos en tiempo real con YOLOv7, deteccion de odiosis en arandanos.
     """
@@ -26,10 +26,9 @@ class ObjectDetection:
         Caraga el modelo de deteccion de objetos.
         :return: Modelo de deteccion de objetos.
         """
-        model = torch.hub.load('WongKinYiu/yolov7', 'custom', 'blueberry_model.pt',
+        model = torch.hub.load('WongKinYiu/yolov7', 'custom', 'best.pt',
                         force_reload=False, trust_repo=True)
         
-        model.conf = 0.1 # confidence threshold (0-1)
         return model
 
 
@@ -41,7 +40,7 @@ class ObjectDetection:
         """
         self.model.to(self.device)
         frame = [frame]
-        results = self.model(frame)
+        results = self.model(frame) # Aplica el modelo de IA al frame
      
         labels, cord = results.xyxyn[0][:, -1], results.xyxyn[0][:, :-1]
         return labels, cord
@@ -49,9 +48,9 @@ class ObjectDetection:
 
     def class_to_label(self, x):
         """
-        For a given label value, return corresponding string label.
-        :param x: numeric label
-        :return: corresponding string label
+        Toma una etiqueta numerica y devuelve la etiqueta correspondiente en formato string.
+        :param x: Etiqueta numerica.
+        :return: Etiqueta correspondiente en formato string.
         """
         return self.classes[int(x)]
 
@@ -68,7 +67,7 @@ class ObjectDetection:
         x_shape, y_shape = frame.shape[1], frame.shape[0]
         for i in range(n):
             row = cord[i]
-            if row[4] >= 0.2:
+            if row[4] >= 0.8:
                 x1, y1, x2, y2 = int(row[0]*x_shape), int(row[1]*y_shape), int(row[2]*x_shape), int(row[3]*y_shape)
                 bgr = (0, 255, 0)
                 cv2.rectangle(frame, (x1, y1), (x2, y2), bgr, 2)
@@ -83,7 +82,7 @@ class ObjectDetection:
         El metodo __call__ permite que el objeto sea llamado como una funcion.
         :return: void
         """
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(0) # 0 - 1, 0 camara externa, 1 camara interna
 
         while cap.isOpened():
             
@@ -100,12 +99,12 @@ class ObjectDetection:
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
+            
         cap.release()
         # close all windows
         cv2.destroyAllWindows()
 
 
 if __name__ == '__main__':
-    # Create a new object and execute.
-    detection = ObjectDetection()
+    detection = OidiosisDetection()
     detection()
