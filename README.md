@@ -83,6 +83,16 @@ A grandes rasgos el script es un script que abre la camara de la computadora y p
 ## Instalacion
 Para instalar el proyecto se debe clonar el repositorio y se debe instalar las dependencias del proyecto. 
 
+Crear un entorno virtual:
+```bash
+python -m venv env
+```
+
+Activar el entorno virtual:
+```bash
+.\env\Scripts\activate
+```
+
 ```bash
 python pip install -r requirements.txt
 ```
