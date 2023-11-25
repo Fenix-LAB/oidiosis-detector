@@ -26,7 +26,7 @@ class OidiosisDetection:
         Caraga el modelo de deteccion de objetos.
         :return: Modelo de deteccion de objetos.
         """
-        model = torch.hub.load('WongKinYiu/yolov7', 'custom', 'best.pt',
+        model = torch.hub.load('WongKinYiu/yolov7', 'custom', 'model-oidiosis.pt',
                         force_reload=False, trust_repo=True)
         
         return model
@@ -67,9 +67,12 @@ class OidiosisDetection:
         x_shape, y_shape = frame.shape[1], frame.shape[0]
         for i in range(n):
             row = cord[i]
-            if row[4] >= 0.8:
+            if row[4] >= 0.3:
                 x1, y1, x2, y2 = int(row[0]*x_shape), int(row[1]*y_shape), int(row[2]*x_shape), int(row[3]*y_shape)
-                bgr = (0, 255, 0)
+                if labels[i] == 0:
+                    bgr = (0, 0, 255)
+                else:
+                    bgr = (0, 255, 0)
                 cv2.rectangle(frame, (x1, y1), (x2, y2), bgr, 2)
                 cv2.putText(frame, self.class_to_label(labels[i]), (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 0.9, bgr, 2)
 
@@ -90,6 +93,7 @@ class OidiosisDetection:
             ret, frame = cap.read()
             if not ret:
                 break
+            frame = cv2.flip(frame, 1)
             results = self.score_frame(frame)
             frame = self.plot_boxes(results, frame)
             end_time = time.perf_counter()
@@ -106,5 +110,5 @@ class OidiosisDetection:
 
 
 if __name__ == '__main__':
-    detection = OidiosisDetection()
-    detection()
+    detection = OidiosisDetection() # Creacion del objeto
+    detection() # llamada al metodo __call__
