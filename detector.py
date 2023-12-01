@@ -86,6 +86,8 @@ class OidiosisDetection:
         :return: void
         """
         cap = cv2.VideoCapture(0) # 0 - 1, 0 camara externa, 1 camara interna
+        # IP Webcam
+        # cap = cv2.VideoCapture('http://192.168.2.34:8080/video') # Conectados a la misma red
 
         while cap.isOpened():
             
