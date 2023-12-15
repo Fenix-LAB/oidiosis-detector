@@ -1,0 +1,13 @@
+train: hgfjy.v1i.yolov7pytorch/train/images
+val: hgfjy.v1i.yolov7pytorch/valid/images
+test: hgfjy.v1i.yolov7pytorch/test/images
+
+nc: 1
+names: ['powdery-mildew']
+
+roboflow:
+  workspace: edhas-krushak-l45gy
+  project: hgfjy
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/edhas-krushak-l45gy/hgfjy/dataset/1
